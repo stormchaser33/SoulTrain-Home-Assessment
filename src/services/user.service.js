@@ -13,7 +13,7 @@ async function getUserByUsername(username) {
   const user = await User.findOne({ username });
 
   return {
-    data: user,
+    data: user === null ? [] : user,
     status: "success",
   };
 }

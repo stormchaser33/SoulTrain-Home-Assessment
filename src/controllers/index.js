@@ -3,7 +3,7 @@ const {
   getUserByUsername,
   addUser,
   deleteUserByUsername,
-} = require("./controllers/user.controller");
+} = require("./user.controller");
 
 module.exports = {
   userController: {
