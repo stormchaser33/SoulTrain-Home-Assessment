@@ -18,7 +18,8 @@ app.use(parseRequestBody);
 app.use(limiter);
 
 // routes
-app.use("/users", userRouter);
+app.use("/", (req, res) => res.send("Hello! SOULTRAIN Server is working"));
+app.use("/api/v1/users", userRouter);
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
