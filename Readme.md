@@ -24,10 +24,17 @@ The project consists of the following components:
 
 ## API Endpoints
 
-- **GET /users**: Get all users.
-- **POST /users**: Create a new user.
-- **GET /users/:username**: Get a user by username.
-- **DELETE /users/:username**: Delete a user by username.
+- **GET api/v1/users**: Get all users.
+- **POST api/v1/users**: Create a new user.
+    ```shell
+    {
+        "username": "asdfasdf",
+        "email": "asdfasdf@asdfasdf.com",
+        "password": "asdfasdf"
+    }
+    ```
+- **GET api/v1/users/:username**: Get a user by username.
+- **DELETE api/v1/users/:username**: Delete a user by username.
 
 ## Installation
 
@@ -49,11 +56,11 @@ To install and run the project locally, please follow these steps:
 ## Usage
 You can use the provided API endpoints to interact with the server and perform user-related operations. Here's an overview of the available endpoints:
 
-- GET /users: Retrieve a list of all users.
-- POST /users: Create a new user by providing the necessary details.
-- GET /users/:username: Retrieve a user by their username.
-- DELETE /users/:username: Delete a user by their username.
-- Make sure to replace :username in the endpoint URLs with the actual username you want to retrieve or delete.
+- **GET api/v1/users**: Retrieve a list of all users.
+- **POST api/v1/users**: Create a new user by providing the necessary details.
+- **GET api/v1/users/:username**: Retrieve a user by their username.
+- **DELETE api/v1/users/:username**: Delete a user by their username.
+- Make sure to replace **:username** in the endpoint URLs with the actual username you want to retrieve or delete.
 
 ## Deployment
 The server is currently deployed and hosted on [SoulTrain Home Assessment Production](https://soultrain-home-assessment-production.up.railway.app). 
