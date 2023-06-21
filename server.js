@@ -1,23 +1,26 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
+const compression = require("compression");
 
 const connectDB = require("./src/configs/db.config");
 const { userRouter } = require("./src/routes");
+const { parseRequestBody, limiter } = require("./src/middlewares");
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
 
+// connect to database
 connectDB();
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+// middlewares
+app.use(compression());
+app.use(parseRequestBody);
+app.use(limiter);
 
-// parse application/json
-app.use(bodyParser.json());
-
+// routes
 app.use("/users", userRouter);
 
 app.listen(port, () => {
