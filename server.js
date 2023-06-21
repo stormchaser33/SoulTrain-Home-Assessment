@@ -18,7 +18,7 @@ app.use(parseRequestBody);
 app.use(limiter);
 
 // routes
-app.use("/", (req, res) => res.send("Hello! SOULTRAIN Server is working"));
+app.get("/", (req, res) => res.send("Hello! SOULTRAIN Server is working"));
 app.use("/api/v1/users", userRouter);
 
 app.listen(port, () => {

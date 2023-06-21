@@ -37,6 +37,7 @@ async function addUser(user) {
   newUser.save();
 
   return {
+    data: [user],
     status: "success",
   };
 }
@@ -47,11 +48,16 @@ async function addUser(user) {
  * @returns {Object} Response object with status
  */
 async function deleteUserByUsername(username) {
-  await User.deleteOne({ username });
+  let result = await User.deleteOne({ username });
 
-  return {
-    status: "success",
-  };
+  return result.deletedCount > 0
+    ? {
+        status: "success",
+      }
+    : {
+        status: "failed",
+        message: "Not found corresponding user",
+      };
 }
 
 module.exports = {
