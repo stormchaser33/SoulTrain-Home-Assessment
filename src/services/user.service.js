@@ -1,5 +1,9 @@
 const { User } = require("../models");
 
+/**
+ * Get all users
+ * @returns {Object} Response object with data and status
+ */
 async function getAllUsers() {
   const users = await User.find();
 
@@ -9,6 +13,11 @@ async function getAllUsers() {
   };
 }
 
+/**
+ * Get a user by username
+ * @param {string} username - The username of the user to retrieve
+ * @returns {Object} Response object with data and status
+ */
 async function getUserByUsername(username) {
   const user = await User.findOne({ username });
 
@@ -18,6 +27,11 @@ async function getUserByUsername(username) {
   };
 }
 
+/**
+ * Add a new user
+ * @param {Object} user - The user object to add
+ * @returns {Object} Response object with status
+ */
 async function addUser(user) {
   const newUser = new User(user);
   newUser.save();
@@ -27,6 +41,11 @@ async function addUser(user) {
   };
 }
 
+/**
+ * Delete a user by username
+ * @param {string} username - The username of the user to delete
+ * @returns {Object} Response object with status
+ */
 async function deleteUserByUsername(username) {
   await User.deleteOne({ username });
 

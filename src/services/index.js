@@ -1,15 +1,5 @@
-const {
-  getAllUsers,
-  getUserByUsername,
-  addUser,
-  deleteUserByUsername,
-} = require("./user.service");
+const userService = require("./user.service");
 
 module.exports = {
-  userService: {
-    getAllUsers,
-    getUserByUsername,
-    addUser,
-    deleteUserByUsername,
-  },
+  userService,
 };

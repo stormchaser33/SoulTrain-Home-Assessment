@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const compression = require("compression");
 
-const connectDB = require("./src/configs/db.config");
+require("./src/configs/db.config");
 const { userRouter } = require("./src/routes");
 const { parseRequestBody, limiter } = require("./src/middlewares");
 
@@ -11,9 +11,6 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
-
-// connect to database
-connectDB();
 
 // middlewares
 app.use(compression());

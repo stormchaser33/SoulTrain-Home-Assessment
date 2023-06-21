@@ -1,5 +1,6 @@
 const { userService } = require("../services");
 
+// Controller function to get all users
 async function getAllUsers(req, res, next) {
   try {
     res.json(await userService.getAllUsers());
@@ -9,6 +10,7 @@ async function getAllUsers(req, res, next) {
   }
 }
 
+// Controller function to get a user by their username
 async function getUserByUsername(req, res, next) {
   try {
     res.json(await userService.getUserByUsername(req.params.username));
@@ -18,6 +20,7 @@ async function getUserByUsername(req, res, next) {
   }
 }
 
+// Controller function to add a new user
 async function addUser(req, res, next) {
   try {
     res.json(await userService.addUser(req.body));
@@ -27,6 +30,7 @@ async function addUser(req, res, next) {
   }
 }
 
+// Controller function to delete a user by their username
 async function deleteUserByUsername(req, res, next) {
   try {
     res.json(await userService.deleteUserByUsername(req.params.username));
@@ -36,6 +40,7 @@ async function deleteUserByUsername(req, res, next) {
   }
 }
 
+// Export the controller functions
 module.exports = {
   getAllUsers,
   getUserByUsername,
