@@ -33,13 +33,20 @@ async function getUserByUsername(username) {
  * @returns {Object} Response object with status
  */
 async function addUser(user) {
-  const newUser = new User(user);
-  newUser.save();
-
-  return {
-    data: [user],
-    status: "success",
-  };
+  const isExisted = await User.findOne({ email: user.email });
+  if (isExisted) {
+    return {
+      data: {},
+      status: "error",
+    };
+  } else {
+    const newUser = new User(user);
+    newUser.save();
+    return {
+      data: user,
+      status: "success",
+    };
+  }
 }
 
 /**
@@ -55,7 +62,7 @@ async function deleteUserByUsername(username) {
         status: "success",
       }
     : {
-        status: "failed",
+        status: "error",
         message: "Not found corresponding user",
       };
 }

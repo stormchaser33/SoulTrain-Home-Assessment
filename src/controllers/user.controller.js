@@ -1,42 +1,52 @@
 const { userService } = require("../services");
 
 // Controller function to get all users
-async function getAllUsers(req, res, next) {
+async function getAllUsers(req, res) {
   try {
-    res.json(await userService.getAllUsers());
+    return res.status(200).json(await userService.getAllUsers());
   } catch (err) {
-    console.error(`Error while getting users`, err.message);
-    next(err);
+    return res.status(500).json({ err });
   }
 }
 
 // Controller function to get a user by their username
-async function getUserByUsername(req, res, next) {
+async function getUserByUsername(req, res) {
   try {
-    res.json(await userService.getUserByUsername(req.params.username));
+    let result = await userService.getUserByUsername(req.params.username);
+    if (result.data.length === 0) {
+      return res.status(400).json({ err: "No corresponding user" });
+    } else {
+      return res.status(200).json(result);
+    }
   } catch (err) {
-    console.error(`Error while getting user by its username`, err.message);
-    next(err);
+    return res.status(500).json({ err });
   }
 }
 
 // Controller function to add a new user
-async function addUser(req, res, next) {
+async function addUser(req, res) {
   try {
-    res.json(await userService.addUser(req.body));
+    let result = await userService.addUser(req.body);
+    if (result.status === "error") {
+      return res
+        .status(400)
+        .json({ err: "User is already existed. Please use another username" });
+    } else {
+      return res.status(200).json(result);
+    }
   } catch (err) {
-    console.error(`Error while creating user`, err.message);
-    next(err);
+    return res.status(500).json({ err });
   }
 }
 
 // Controller function to delete a user by their username
-async function deleteUserByUsername(req, res, next) {
+async function deleteUserByUsername(req, res) {
   try {
-    res.json(await userService.deleteUserByUsername(req.params.username));
+    return res
+      .status(200)
+      .json(await userService.deleteUserByUsername(req.params.username));
   } catch (err) {
-    console.error(`Error while deleting user by its username`, err.message);
-    next(err);
+    return res.status(500).json({ err });
   }
 }
 

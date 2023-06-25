@@ -28,9 +28,9 @@ The project consists of the following components:
 - **POST api/v1/users**: Create a new user.
     ```shell
     {
-        "username": "asdfasdf",
-        "email": "asdfasdf@asdfasdf.com",
-        "password": "asdfasdf"
+        "username": "test",
+        "email": "test@test.com",
+        "password": "test"
     }
     ```
 - **GET api/v1/users/:username**: Get a user by username.
